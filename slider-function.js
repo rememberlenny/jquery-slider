@@ -6,7 +6,7 @@
       currentSliderHead: jQuery(this.slideHead).find('.active'),
       currentSliderContent: jQuery(this.slideContent).find('.active'),
       currentSlider: 0,
-      slideTotalCount: jQuery('.slider-head-link').find('li').size()
+      slideTotalCount: jQuery('.slider-head-link').find('li').size() - 1
     };
   
   var sliderStates = ['active', 'transition', 'inactive']; 
@@ -19,7 +19,7 @@
       this.autoCycle();
     },
     checkIfLastSlide: function(){
-      if (SliderVar.currentSlider == SliderVar.lastSlide){
+      if (SliderVar.currentSlider == SliderVar.slideTotalCount){
         return true;
       } else {
         return false;
@@ -30,7 +30,7 @@
       console.log('Slide count reset.');
     },
     selectNext: function(){
-      if (checkIfLastSlide = false){
+      if (this.checkIfLastSlide != false){
         this.incrementSlide();
       } else {
         this.resetSlideCount();
@@ -40,11 +40,11 @@
     },
     incrementSlide: function(){
       SliderVar.currentSlider++;
-      console.log('Slide count'+ SliderVar.currentSlider +'.');
+      console.log('Slide count '+ SliderVar.currentSlider +'.');
     },
     resetSlideCount: function(){
       SliderVar.currentSlider == 0;
-      console.log('Slide count'+ SliderVar.currentSlider +'.');
+      console.log('Slide count '+ SliderVar.currentSlider +'.');
     },
     autoCycle: function(){
       console.log('Autocycle begin.');
@@ -59,15 +59,9 @@
       SliderVar.sliderHead.find('.active').removeClass('active');
       SliderVar.currentSliderHead.addClass('active');
       SliderVar.sliderContent.find('.active').removeClass('active');
+      SliderVar.currentSliderHead.addClass('active');
     },
     passTime: function(){
-      console.log('Count begin.');
-      setTimeout(
-      function() 
-      {
-        //do something special
-      }, 5000);
-      console.log('Count complete.');
     }
   };
   // Activate
